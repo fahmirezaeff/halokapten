@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>halokapten</title>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="js/vendor/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="dist/css/bootstrapValidator.css"/>	
+
+    <script type="text/javascript" src="js/vendor/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/dist/js/bootstrapValidator.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+	<!-- Optional theme -->
+	<!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"> -->
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="custom.css">
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){
+		var name = localStorage.getItem('username');
+		$.ajax({
+		url: 'http://www.carirekan.com/halokapten/pro.php?username='+name,
+		dataType: 'jsonp',
+		jsonp: 'jsoncallback',
+		timeout: 5000,
+		success: function(data, status){
+			$.each(data, function(i,item){ 
+				$("#listcewek").append(""+item.saldo+"");
+			});
+			$("#listcewek");
+			$.each(data, function(i,item){ 
+				$("#oke").append(""+item.username+"");	
+			});
+			$("#oke");
+			$.each(data, function(i,item){ 
+				$("#okee").append(""+item.password+"");	
+			});
+			$("#okee");
+			$.each(data, function(i,item){ 
+				$("#okeee").append(""+item.nama_user+"");	
+			});
+			$("#okeee");
+			$.each(data, function(i,item){ 
+				$("#okeeee").append(""+item.alamat_user+"");	
+			});
+			$("#okeeee");
+			$.each(data, function(i,item){ 
+				$("#okeeeee").append(""+item.telp_user+"");	
+			});
+			$("#okeeeee");
+		},
+			error: function(){
+		   	alert('Error terjadi');
+			}
+		});
+		});  
+        </script>
+	<script type="text/javascript" charset="utf-8">
+
+    var pictureSource;   // picture source
+	var destinationType; // sets the format of returned value
+ 
+document.addEventListener("deviceready", onDeviceReady, false);
+ 
+function onDeviceReady() {
+    pictureSource = navigator.camera.PictureSourceType;
+    destinationType = navigator.camera.DestinationType;
+}
+ 
+function clearCache() {
+    navigator.camera.cleanup();
+}
+ 
+var retries = 0;
+function onCapturePhoto(fileURI) {
+    var win = function (r) {
+        clearCache();
+        retries = 0;
+        alert('Done!');
+    }
+ 
+    var fail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                onCapturePhoto(fileURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            clearCache();
+            alert('Ups. Something wrong happens!');
+        }
+    }
+ 
+    var options = new FileUploadOptions();
+    options.fileKey = "file";
+    options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+    options.mimeType = "image/jpeg";
+    options.params = {}; // if we need to send parameters to the server request
+    var ft = new FileTransfer();
+    ft.upload(fileURI, encodeURI("http://yourdomain.com/upload.php"), win, fail, options);
+}
+ 
+function capturePhoto() {
+    navigator.camera.getPicture(onCapturePhoto, onFail, {
+        quality: 100,
+        destinationType: destinationType.FILE_URI
+    });
+}
+ 
+function onFail(message) {
+    alert('Failed because: ' + message);
+}
+
+    </script>
+</head>
+<body style="background:#e4dbbf !important">
+
+	<header>
+
+
+		<div class="container">
+			<div class="row">
+				<br>
+				<center><img src="img/logo.png" class="img-responsive" alt="Profile" width="304" height="100"></center>
+				<center><h3>My Profile</h3></center>
+			</div> <!-- end row -->
+			<hr>
+				<a href="main.html">&larr; Menu Awal</a>
+			<hr>
+		</div> <!-- end container -->
+	</header>
+
+	<div class="demo-area">
+		<div class="container">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a href="#content-1" data-toggle="collapse" data-parent="#accordion">Isi Deposit</a>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse" id="content-1">
+						<div class="panel-body">
+							<p><form action="" id="fileForm" method="post" enctype="multipart/form-data" >
+				<div class="form-group">
+					<label for="form-elem-1" class="control-label">Saldo Anda Sekarang : <label id="listcewek">
+								</label></label><br>
+					<label for="form-elem-1" class="control-label">
+					<p class="help-block">Transfer ke rekening BCA atas nama XXXXX</p>
+				</div>
+				<div class="form-group">
+					<label for="form-elem-1" class="control-label">Nominal</label>
+					<input type="text" name="nominal" id="focusedInput" class="form-control" placeholder="Isi nominal yang ditransfer">
+				</div>
+				<div class="form-group">
+					<label for="form-elem-1" class="control-label">No. Referensi</label>
+					<input type="text" name="refer" id="focusedInput" class="form-control" placeholder="Isi nomor referensi pada saat transfer">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputFile">Kirim Bukti Transfer</label><br>
+					<button class="btn btn-primary" onclick="capturePhoto();">Ambil Foto</button> <br>
+					<img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
+					<img style="display:none;" id="largeImage" src="" />
+					<p class="help-block">Masukan foto bukti transfer</p>
+				  </div>
+				<hr>
+				<!-- <div class="checkbox">
+					<label for=""><input type="checkbox" name="brg[]"><input type="text" name="lainnya" id="focusedInput" class="form-control" placeholder="Lainnya"></label>
+					<p class="help-block">Tidak menerima pengambilan alkohol, narkoba (sejenisnya) dan barang pecah belah</p>
+				</div> -->
+				<!-- <p>Dengan mengisi form yang telah disediakan, berarti user telah memahami persyaratan dan ketentuan yang berlaku <a href="" class="btn btn-link">Persyaratan Lebih lanjut</a></p>-->
+			<!-- <div class="checkbox">
+					<label for=""><input type="checkbox"> Remember me</label>
+				</div>-->
+				<center><button type="submit" class="btn btn-primary">Kirim Bukti</button></center>
+			</form></p>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a href="#content-2" data-toggle="collapse" data-parent="#accordion">My Profile</a>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse" id="content-2">
+						<div class="panel-body">
+							<p>
+							<div class="table-responsive">          
+								  <table class="table">
+									<tbody>
+									  <tr>
+										<td><label for="form-elem-1" class="control-label">Username </label></td>
+										<td><label id="oke"></label></td>
+									  </tr>
+									  <tr>
+										<td><label for="form-elem-1" class="control-label">Password </label></td>
+										<td><label id="okee"></label></td>
+									  </tr>
+									  <tr>
+										<td><label for="form-elem-1" class="control-label">Nama </label></td>
+										<td><label id="okeee"></label></td>
+									  </tr>
+									  <tr>
+										<td><label for="form-elem-1" class="control-label">Alamat </label></td>
+										<td><label id="okeeee"></label></td>
+									  </tr>
+									  <tr>
+										<td><label for="form-elem-1" class="control-label">No. Telpon </label></td>
+										<td><label id="okeeeee"></label></td>
+									  </tr>
+									</tbody>
+								  </table>
+								  </div>
+				<hr>
+				<!-- <div class="checkbox">
+					<label for=""><input type="checkbox" name="brg[]"><input type="text" name="lainnya" id="focusedInput" class="form-control" placeholder="Lainnya"></label>
+					<p class="help-block">Tidak menerima pengambilan alkohol, narkoba (sejenisnya) dan barang pecah belah</p>
+				</div> -->
+				<!-- <p>Dengan mengisi form yang telah disediakan, berarti user telah memahami persyaratan dan ketentuan yang berlaku <a href="" class="btn btn-link">Persyaratan Lebih lanjut</a></p>-->
+			<!-- <div class="checkbox">
+					<label for=""><input type="checkbox"> Remember me</label>
+				</div>-->
+				<center><a href="ubah.html" class="btn btn-primary" >Ubah</a></center></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> <!-- end demo-area -->
+	<div class="container">
+			<div class="row">
+			</div> <!-- end row -->
+			<hr>
+				<a href="">&larr; Logout</a>
+		</div>
+
+	<footer>
+		<div class="container">
+			<hr>
+
+			<p>
+				<center><small>Copyright by Imagidea</small></center>
+			</p>
+		</div> <!-- end container -->
+	</footer>
+
+
+
+	<!-- Latest compiled and minified JavaScript -->
+</body>
+</html>

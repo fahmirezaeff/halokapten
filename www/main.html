@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>halokapten</title>
+
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+	<!-- Optional theme -->
+	<!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"> -->
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="custom.css">
+	<script type="text/javascript" charset="utf-8">
+	document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    document.addEventListener("backbutton", function (e) {
+        e.preventDefault(); 
+    navigator.notification.confirm("Are you sure want to exit from App?", onConfirmExit, "Confirmation", "Yes,No");
+    }, false );
+}
+ 
+function onConfirmExit(button) {
+    if(button==2){ //If User select a No, then return back;
+        return;
+    }else{
+        navigator.app.exitApp(); // If user select a Yes, quit from the app.
+    }
+}
+    </script>
+	
+<body style="background:#e4dbbf !important">
+
+	<header>
+		
+
+		<div class="container">
+			<div class="row">
+				<br>
+				<center><img src="img/logo.png" class="img-responsive" alt="Profile" width="304" height="100"></center>
+			</div> <!-- end row -->
+
+			<hr>
+			<div class="container">
+			<div class="row">
+			</div> <!-- end row -->
+			<a href="mapsantar.html"><img src="img/profile.png" alt="Profile" width="22" height="22">  My Profile/Isi Deposit</a>
+			<hr>
+		</div>
+		<div class="container">
+			<div class="row">
+			</div> <!-- end row -->
+			<a href="riwayat.html"><img src="img/tasks.png" alt="Profile" width="22" height="22">  Riwayat Pemesanan</a>
+			<hr>
+		</div> 		<!-- end container -->
+		</div> <!-- end container -->
+	</header>
+	<div>
+		<div class="container">
+		 <table class="table">
+    <thead>
+      <tr>
+        <td align="center"><a href="form1.html"><img src="img/antar.png" class="img-responsive" alt="Antar" width="152" height="118"></a></td>
+        <td align="center"><a href="form2.html"><img src="img/antri.png" class="img-responsive" alt="Antri" width="152" height="118"></a></td>
+      </tr>
+	    <tr>
+        <td align="center"><a href="form3.html"><img src="img/belanja.png" class="img-responsive" alt="Service" width="152" height="118"></a></td>
+        <!-- <td align="center"><a href=""><img src="img/portfolio/cake.png" class="img-responsive" alt="Website" width="152" height="118"></td>-->
+      </tr>
+    </thead>
+   
+  </table>
+			<!-- <div class="checkbox">
+					<label for=""><input type="checkbox"> Remember me</label>
+				</div>-->
+
+		
+		</div>
+	</div> <!-- end demo-area -->
+
+	<footer>
+		<div class="container">
+			<hr>
+
+			<p>
+				<center><small>Copyright by Imagidea</small></center>
+			</p>
+		</div> <!-- end container -->
+	</footer>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>	
+
+</body>
+</html>
