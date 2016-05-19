@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>halokapten</title>
+
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="js/vendor/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="js/dist/css/bootstrapValidator.css"/>
+
+    <script type="text/javascript" src="js/vendor/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/dist/js/bootstrapValidator.js"></script>
+	<link rel="stylesheet" href="css/intlTelInput.css" />
+	<script src="js/intlTelInput.min.js"></script>
+
+	<!-- Optional theme -->
+	<!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"> -->
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="custom.css">
+</head>
+<body style="background:#e4dbbf !important">
+
+	<header>
+		<div class="container">
+			<div class="row">
+				<center><img src="img/logo.png" class="img-responsive" alt="Profile" width="304" height="100"></center>
+				<center><h2>Register</h2></center>
+			</div> <!-- end row -->
+
+			<hr>
+		</div> <!-- end container -->
+	</header>
+
+	<div>
+		<div class="container">
+			<div id="landmark-1" data-landmark-id="1">
+			<form action="" role="form" id="defaultForm" method="post">
+				<div class="form-group">
+					<label for="form-elem-1" class="control-label">Username</label>
+					<input type="text" name="username" id="username" class="form-control" placeholder="username">
+				</div>
+				<div class="form-group">
+					<label for="form-elem-2" class="control-label">Password</label>
+					<input type="password" name="password" id="password" class="form-control" placeholder="password">
+				</div>
+				<div class="form-group">
+					<label for="form-elem-2" class="control-label">Confirm Password</label>
+					<input type="password" name="confpass" id="confpass" class="form-control" placeholder="confirm password">
+				</div>
+				<div class="form-group">
+					<label for="form-elem-2" class="control-label">Nama Lengkap</label>
+					<input type="text" name="nama" id="nama" class="form-control" placeholder="nama lengkap anda">
+				</div>
+				<div class="form-group">
+					<label for="form-elem-2" class="control-label">No. Telpon</label><br>
+					<input type="text" name="telp" id="telp" class="form-control" placeholder="contoh : 0812xxxxx">
+				</div>
+				<div class="form-group">
+					<label for="form-elem-2" class="control-label">Alamat</label>
+					<textarea class="form-control" rows="3" name="alamat" id="alamat" placeholder="alamat anda"></textarea>
+				</div>
+				<p>Dengan mengisi form yang telah disediakan, berarti user telah memahami persyaratan dan ketentuan yang berlaku <a href="" class="btn btn-link">Persyaratan Lebih lanjut</a></p>
+			<!-- <div class="checkbox">
+					<label for=""><input type="checkbox"> Remember me</label>
+				</div>-->
+				<center><button type="submit" class="btn btn-primary">Join</button></center>
+			</form></div>
+
+
+		</div>
+	</div> <!-- end demo-area -->
+
+	<footer>
+		<div class="container">
+			<hr>
+
+			<p>
+				<center><small>Copyright by Imagidea</small></center>
+			</p>
+		</div> <!-- end container -->
+	</footer>
+
+
+
+	<!-- Latest compiled and minified JavaScript -->
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#defaultForm')
+        .find('[name="telp"]')
+            .intlTelInput({
+                utilsScript: 'js/utils.js',
+                autoPlaceholder: true,
+                preferredCountries: ['id']
+            });
+    $('#defaultForm').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            username: {
+                message: 'The username is not valid',
+                validators: {
+                    notEmpty: {
+                        message: 'Username Tidak boleh kosong'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'Username harus lebih dari 6 karakter'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_\.]+$/,
+                        message: 'Username hanya bisa menggunakan alphabet, nomer, titik dan underscore'
+                    },
+					remote: {
+                        message: 'Username Tersedia, Cari username lain',
+                        url: 'http://www.carirekan.com/halokapten/remote.php',
+						type: 'GET'
+                    }
+                }
+            },
+			telp: {
+                    validators: {
+                        callback: {
+                            message: 'Nomor telpon tidak valid',
+                            callback: function(value, validator, $field) {
+                                return value === '' || $field.intlTelInput('isValidNumber');
+                            }
+                        }
+                    }
+                },
+			nama: {
+                validators: {
+                    stringLength: {
+                        max: 50,
+                        message: 'Nama Lengkap harus kurang dari 50 karakter'
+                    }
+                }
+            },
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'The email address is required and can\'t be empty'
+                    },
+                    emailAddress: {
+                        message: 'The input is not a valid email address'
+                    }
+                }
+            },
+            phoneNumberUK: {
+            	validators: {
+            		phone: {
+            			message: 'The input is not a valid UK phone number',
+            			country: 'GB'
+            		}
+            	}
+            },
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: 'Password tidak boleh kosong'
+                    },
+					stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'Password harus lebih dari 6 karakter'
+                    },
+                    identical: {
+                        field: 'confirmPassword',
+                        message: 'Password tidak sama'
+                    }
+                }
+            },
+            confpass: {
+                validators: {
+                    notEmpty: {
+                        message: 'Confirm Password tidak boleh kosong'
+                    },
+                    identical: {
+                        field: 'password',
+                        message: 'Password tidak sama'
+                    }
+                }
+            },
+			alamat: {
+                validators: {
+                    notEmpty: {
+                        message: 'Alamat tidak boleh kosong'
+                    }
+                }
+            },
+        }
+		
+    })
+	.on('success.form.bv', function(e) {
+			// Prevent form submission
+		e.preventDefault();
+        $.ajax({
+                url:'http://www.carirekan.com/halokapten/regis.php',
+                type:'POST',
+                data: $('#defaultForm').serialize(),
+                success:function(result){
+                   alert('Selamat Datang');
+				   window.location="index.html";
+
+                }
+
+           });
+
+		});
+});
+</script>
+<!--<script type="text/javascript">
+$('form').submit(function(){
+	var username = document.getElementById("username").value;
+	var password = document.getElementById("password").value;
+	var nama = document.getElementById("nama").value;
+	var telp = document.getElementById("telp").value;
+	var alamat = document.getElementById("alamat").value;
+	var dataString = 'username=' + username + '&password=' + password + '&nama=' + nama + '&telp=' + telp + '&alamat=' + alamat;
+		if (username == '' || password == '' || nama == '' || telp == '' || alamat == '') {
+		} else {
+	
+			$.ajax({
+				type: 'POST',
+				data: dataString,
+				url: 'http://www.carirekan.com/halokapten/regis.php',
+				cache: false,
+				success: function(data){
+					console.log(data);
+					alert('Your comment was successfully added');
+				},
+				error: function(){
+					console.log(data);
+					alert('There was an error adding your comment');
+				}
+			});
+		}
+		return false;
+});
+</script>-->
+
+</body>
+</html>
+</html>

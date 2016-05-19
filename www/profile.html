@@ -241,7 +241,7 @@ function onFail(message) {
 			<div class="row">
 			</div> <!-- end row -->
 			<hr>
-				<a href="">&larr; Logout</a>
+				<a href="index.html" name="redirect" onClick="redirect()">&larr; Logout</a>
 		</div>
 
 	<footer>
@@ -257,5 +257,12 @@ function onFail(message) {
 
 
 	<!-- Latest compiled and minified JavaScript -->
+	<script type="text/javascript">
+    function redirect()
+    {
+    localStorage.removeItem('username');
+	window.location="index.html";
+    }
+    </script>
 </body>
 </html>

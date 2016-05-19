@@ -4,7 +4,6 @@
 	<head>
 	<meta charset="utf-8">
 	<title>halokapten</title>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -53,7 +52,7 @@
 		timeout: 5000,
 		success: function(data, status){
 			$.each(data, function(i,item){ 
-				$("#listceweka").append("<li><b>Jenis Antrian</b> : "+item.jenisant+"</li><li><b>Nama Tempat Antrian</b> :"+item.namant+"</li><li><b>Alamat Tempat Antrian</b> :"+item.alantri+"</li><li><b>Detail Alamat Antrian</b> :"+item.detalamat+"</li><li><b>Detail Antrian</b> :"+item.detpeng+"</li><li><b>Harga Service Halo Kapten</b> :"+item.total+"</li><li><b>Cara Pembayaran</b> :"+item.carapem+"</li><li><b>Time</b> :"+item.time+"</li><li><b>Status</b> :"+item.status+"</li>");
+				$("#listceweka").append("<li><b>Jenis Antrian</b> : "+item.jenisant+"</li><li><b>Nama Tempat Antrian</b> :"+item.namant+"</li><li><b>Alamat Tempat Antrian</b> :"+item.alantri+"</li><li><b>Detail Alamat Antrian</b> :"+item.detalamat+"</li><li><b>Detail Antrian</b> :"+item.detpeng+"</li><li><b>Harga Service Halo Kapten</b> :"+item.total+"</li><li><b>Cara Pembayaran</b> :"+item.carapem+"</li><li><b>Time</b> :"+item.time+"</li><li><b>Status</b> :"+item.status+"</li><hr>");
 			});
 			$("#listceweka");
 		},
@@ -73,7 +72,7 @@
 		timeout: 5000,
 		success: function(data, status){
 			$.each(data, function(i,item){ 
-				$("#listceweku").append("<li><b>Nama Tempat Belanja</b> :"+item.namabelanja+"</li><li><b>Alamat Tempat Belanja</b> :"+item.albelanja+"</li><li><b>Detail Alamat Belanja</b> :"+item.detalamat+"</li><li><b>Detail Belanja</b> :"+item.detpeng+"</li><li><b>Harga Service Halo Kapten</b> :"+item.total+"</li><li><b>Cara Pembayaran</b> :"+item.carapem+"</li><li><b>Time</b> :"+item.time+"</li><li><b>Status</b> :"+item.status+"</li>");
+				$("#listceweku").append("<li><b>Nama Tempat Belanja</b> :"+item.namabelanja+"</li><li><b>Alamat Tempat Belanja</b> :"+item.albelanja+"</li><li><b>Detail Alamat Belanja</b> :"+item.detalamat+"</li><li><b>Detail Belanja</b> :"+item.detpeng+"</li><li><b>Harga Service Halo Kapten</b> :"+item.total+"</li><li><b>Cara Pembayaran</b> :"+item.carapem+"</li><li><b>Time</b> :"+item.time+"</li><li><b>Status</b> :"+item.status+"</li><hr>");
 			});
 			$("#listceweku");
 		},
